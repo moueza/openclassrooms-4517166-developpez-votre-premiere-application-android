@@ -1,7 +1,9 @@
-package com.homniserv.moueza.peter.topquiz;
-
+//package com.homniserv.moueza.peter.topquiz;
+package com.ponroy.florian.topquiz;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.homniserv.moueza.peter.topquiz.R;
 
 public class MainActivity extends AppCompatActivity {
 
