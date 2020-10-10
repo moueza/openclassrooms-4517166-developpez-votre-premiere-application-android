@@ -13,6 +13,22 @@ public class QuestionBank {
     List<Question> mUsedQuestionsMoi = new ArrayList<Question>();
     List<Integer> mUsedIndexMoi = new ArrayList<Integer>();
 
+    public List<Question> getUsedQuestionsMoi() {
+        return mUsedQuestionsMoi;
+    }
+
+    public void setUsedQuestionsMoi(List<Question> usedQuestionsMoi) {
+        mUsedQuestionsMoi = usedQuestionsMoi;
+    }
+
+    public List<Integer> getUsedIndexMoi() {
+        return mUsedIndexMoi;
+    }
+
+    public void setUsedIndexMoi(List<Integer> usedIndexMoi) {
+        mUsedIndexMoi = usedIndexMoi;
+    }
+
     public List<Question> getQuestionList() {
         return mQuestionList;
     }
