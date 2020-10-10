@@ -64,6 +64,8 @@ public class QuestionBank {
     /**
      * does not repeat even after a cycle
      * TODO Generic
+     * TODO modulo 4 last, because incr there
+     * TODO no double shuffle ? index vs
      */
     public Question getQuestion() {
         // Loop over the questions and return a new one at each call
@@ -73,6 +75,7 @@ public class QuestionBank {
         while (choicePos == indexLast) {
             choicePos = this.randomIndexMoi(this.mQuestionList);
         }
+        this.mUsedIndexMoi.add(choicePos);
         Question questionsCollectionTAIL = this.mQuestionList.remove(choicePos);
         choiceQuestion = this.mQuestionList.get(choicePos);
         return choiceQuestion;
