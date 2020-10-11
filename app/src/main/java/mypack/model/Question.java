@@ -11,18 +11,27 @@ public class Question {
     private List<String> mChoiceList;
     private int mAnswerIndex;
 
+
     /**
      * robustesse
      */
     public Question() {
-       /** assert mChoiceList.size() >= 0;
+        /** assert mChoiceList.size() >= 0;
 
-        assert mAnswerIndex >= 0;
-        assert mAnswerIndex >= 0;
-        assert mAnswerIndex < mChoiceList.size();
-*/
+         assert mAnswerIndex >= 0;
+         assert mAnswerIndex >= 0;
+         assert mAnswerIndex < mChoiceList.size();
+         */
 
     }
+
+
+    public Question(String question, List<String> choiceList, int answerIndex) {
+        mQuestion = question;
+        mChoiceList = choiceList;
+        mAnswerIndex = answerIndex;
+    }
+
 
     public String getQuestion() {
         return mQuestion;
