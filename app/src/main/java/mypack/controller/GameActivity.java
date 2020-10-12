@@ -2,9 +2,10 @@ package mypack.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 
@@ -12,7 +13,7 @@ import mypack.R;
 import mypack.model.Question;
 import mypack.model.QuestionBank;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mQuestionText;
     private Button mAnswerButton1;
     private Button mAnswerButton2;
@@ -20,6 +21,25 @@ public class GameActivity extends AppCompatActivity {
     private Button mAnswerButton4;
 
     QuestionBank mQuestionBank = null;
+
+    private Question mQuestionMoi =null;
+
+    public Question getQuestionMoi() {
+        return mQuestionMoi;
+    }
+
+    public void setQuestionMoi(Question questionMoi) {
+        mQuestionMoi = questionMoi;
+    }
+
+    public QuestionBank getQuestionBank() {
+        return mQuestionBank;
+    }
+
+    public void setQuestionBank(QuestionBank questionBank) {
+        mQuestionBank = questionBank;
+    }
+
 
     public TextView getQuestionText() {
         return mQuestionText;
@@ -105,5 +125,42 @@ public class GameActivity extends AppCompatActivity {
 
         mQuestionBank = this.generateQuestions();
 
+        //Use the same listener for the four buttons.
+        //The tag value will be used to distinguish the button triggered
+        mAnswerButton1.setOnClickListener(this);
+        mAnswerButton2.setOnClickListener(this);
+        mAnswerButton3.setOnClickListener(this);
+        mAnswerButton4.setOnClickListener(this);
+
+
+        // Use the tag property to 'name' the buttons
+        mAnswerButton1.setTag(0);
+        mAnswerButton2.setTag(1);
+        mAnswerButton3.setTag(2);
+        mAnswerButton4.setTag(3);
+
+          this.setQuestionMoi(this.generateQuestions().getQuestion());
+        this.displayQuestion(this.generateQuestions().getQuestion());
+    }
+    private void displayQuestion(final Question question) {
+        // Set the text for the question text view and the four buttons
+        this.mQuestionText.append(question.getQuestion());
+
+        this.mAnswerButton1.setText(question.getChoiceList().get(0));
+        this.mAnswerButton2.setText(question.getChoiceList().get(1));
+        this.mAnswerButton3.setText(question.getChoiceList().get(2));
+        this.mAnswerButton4.setText(question.getChoiceList().get(3));
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        int responseIndex = (int) v.getTag();
+        if (responseIndex == this.getQuestionMoi().getAnswerIndex()) {
+            Toast.makeText(this, "Correct !", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "False !", Toast.LENGTH_SHORT).show();
+
+        }
     }
 }
