@@ -1,12 +1,20 @@
+def gv
 pipeline {
   agent any
   tools{
     #maven Maven
   }
   stages{
+    stage("init"){
+      steps {
+        script{
+          gv = load "script.groovy"
+        }
+      }
+    }
     stage("build"){
       steps {
-        echo 'building the app...'
+        gv.buildApp()
       }
     }
     stage("test"){
