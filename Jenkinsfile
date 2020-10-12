@@ -1,3 +1,4 @@
+#declarative non Groovy
 def gv
 pipeline {
   agent any
