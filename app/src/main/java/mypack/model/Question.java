@@ -25,14 +25,21 @@ public class Question {
 
     }
 
-
+    /**
+     * 1:07
+     */
     public Question(String question, List<String> choiceList, int answerIndex) {
-        mQuestion = question;
-        mChoiceList = choiceList;
-        mAnswerIndex = answerIndex;
+        /**  mQuestion = question;
+         mChoiceList = choiceList;
+         mAnswerIndex = answerIndex;*/
+        this.setQuestion(question);
+        this.setChoiceList(choiceList);
+        this.setAnswerIndex(answerIndex);
     }
 
-
+    /**
+     * cf astuce pr enlever le m ds getter setter
+     */
     public String getQuestion() {
         return mQuestion;
     }

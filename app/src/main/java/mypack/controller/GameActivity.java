@@ -20,17 +20,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button mAnswerButton3;
     private Button mAnswerButton4;
 
-    QuestionBank mQuestionBank = null;
+    private QuestionBank mQuestionBank;
+    private Question mCurrentQuestion;
 
-    private Question mQuestionMoi =null;
-
-    public Question getQuestionMoi() {
-        return mQuestionMoi;
-    }
-
-    public void setQuestionMoi(Question questionMoi) {
-        mQuestionMoi = questionMoi;
-    }
 
     public QuestionBank getQuestionBank() {
         return mQuestionBank;
@@ -139,9 +131,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton3.setTag(2);
         mAnswerButton4.setTag(3);
 
-          this.setQuestionMoi(this.generateQuestions().getQuestion());
-        this.displayQuestion(this.generateQuestions().getQuestion());
+        mAnswerButton1.setOnClickListener(this);
+        mAnswerButton2.setOnClickListener(this);
+        mAnswerButton3.setOnClickListener(this);
+        mAnswerButton4.setOnClickListener(this);
+
+        /*3:06->6:12**/
+        mCurrentQuestion = mQuestionBank.getQuestion();
+        this.displayQuestion(mCurrentQuestion);
+        //this.setQuestionMoi(this.generateQuestions().getQuestion());
+        // this.displayQuestion(this.generateQuestions().getQuestion());
     }
+
+    /**5:01*/
     private void displayQuestion(final Question question) {
         // Set the text for the question text view and the four buttons
         this.mQuestionText.append(question.getQuestion());
@@ -156,9 +158,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int responseIndex = (int) v.getTag();
-        if (responseIndex == this.getQuestionMoi().getAnswerIndex()) {
+        if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
+            //Good answer
             Toast.makeText(this, "Correct !", Toast.LENGTH_SHORT).show();
         } else {
+            //bad answer
             Toast.makeText(this, "False !", Toast.LENGTH_SHORT).show();
 
         }
