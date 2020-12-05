@@ -13,6 +13,15 @@ import mypack.R;
 import mypack.model.Question;
 import mypack.model.QuestionBank;
 
+/**
+ * p2c5 2:14 nouv questionp2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
+ */
+/**p2c5 3:15 tjs v7 pr retrocompatibilite*/
+/**p2c5 3:30 Builder*/
+
+/**p2c5 4:40 finish remonte ds Activity prec*/
+
+
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mQuestionText;
     private Button mAnswerButton1;
@@ -23,6 +32,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private QuestionBank mQuestionBank;
     private Question mCurrentQuestion;
 
+    private int mScore;
+    private int mNumberOfQuestions;
 
     public QuestionBank getQuestionBank() {
         return mQuestionBank;
@@ -108,14 +119,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_game);
 
 
+        mQuestionBank = this.generateQuestions();
+
+        mScore = 0;
+        mNumberOfQuestions = 4;
+
+//wire widgets
         mQuestionText = (TextView) findViewById(R.id.activity_game_question_text);
         mAnswerButton1 = (Button) findViewById(R.id.activity_game_answer1_btn);
         mAnswerButton2 = (Button) findViewById(R.id.activity_game_answer2_btn);
         mAnswerButton3 = (Button) findViewById(R.id.activity_game_answer3_btn);
         mAnswerButton4 = (Button) findViewById(R.id.activity_game_answer4_btn);
 
-
-        mQuestionBank = this.generateQuestions();
 
         //Use the same listener for the four buttons.
         //The tag value will be used to distinguish the button triggered
@@ -161,10 +176,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
             //Good answer
             Toast.makeText(this, "Correct !", Toast.LENGTH_SHORT).show();
+            mScore++;
         } else {
             //bad answer
             Toast.makeText(this, "False !", Toast.LENGTH_SHORT).show();
 
+        }
+
+
+        if (--mNumberOfQuestions == 0) {
+            // No question left, end the game
+        } else {
+            mCurrentQuestion = mQuestionBank.getQuestion();
+            displayQuestion(mCurrentQuestion);
         }
     }
 }
