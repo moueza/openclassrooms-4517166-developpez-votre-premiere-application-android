@@ -1,5 +1,7 @@
 package mypack.controller;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,8 @@ import mypack.model.QuestionBank;
 
 /**
  * p2c5 2:14 nouv questionp2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
+ * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
+ * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  */
 /**p2c5 3:15 tjs v7 pr retrocompatibilite*/
 /**p2c5 3:30 Builder*/
@@ -186,9 +190,25 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         if (--mNumberOfQuestions == 0) {
             // No question left, end the game
+            endGame();
         } else {
             mCurrentQuestion = mQuestionBank.getQuestion();
             displayQuestion(mCurrentQuestion);
         }
+    }
+
+    private void endGame() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Well done!")
+                .setMessage("Your score is " + mScore)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();//https://developer.android.com/reference/android/app/Activity.html#finish() ancre
+                    }
+                })
+                .create()
+                .show();
     }
 }
