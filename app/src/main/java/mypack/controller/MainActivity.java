@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     private User mUser;
 
+   public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -64,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Intent gameActivity = new Intent(MainActivity.this, GameActivity.class);
-                startActivity(gameActivity);
+                //startActivity(gameActivity);
+                startActivityForResult(gameActivity, GAME_ACTIVITY_REQUEST_CODE);
             }
         });
     }
