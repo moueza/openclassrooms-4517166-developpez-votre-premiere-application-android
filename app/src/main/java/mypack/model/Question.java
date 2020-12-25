@@ -11,19 +11,35 @@ public class Question {
     private List<String> mChoiceList;
     private int mAnswerIndex;
 
+
     /**
      * robustesse
      */
     public Question() {
-       /** assert mChoiceList.size() >= 0;
+        /** assert mChoiceList.size() >= 0;
 
-        assert mAnswerIndex >= 0;
-        assert mAnswerIndex >= 0;
-        assert mAnswerIndex < mChoiceList.size();
-*/
+         assert mAnswerIndex >= 0;
+         assert mAnswerIndex >= 0;
+         assert mAnswerIndex < mChoiceList.size();
+         */
 
     }
 
+    /**
+     * 1:07
+     */
+    public Question(String question, List<String> choiceList, int answerIndex) {
+        /**  mQuestion = question;
+         mChoiceList = choiceList;
+         mAnswerIndex = answerIndex;*/
+        this.setQuestion(question);
+        this.setChoiceList(choiceList);
+        this.setAnswerIndex(answerIndex);
+    }
+
+    /**
+     * cf astuce pr enlever le m ds getter setter
+     */
     public String getQuestion() {
         return mQuestion;
     }
