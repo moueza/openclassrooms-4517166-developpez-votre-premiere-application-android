@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     private static final String TAG = "MainActivity";
     private TextView mGreetingText;
+    private TextView    scoreText;
     private EditText mNameInput;
     private Button mPlayButton;
     private User mUser;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
 
         mPlayButton.setEnabled(false);
+        scoreText = (TextView) findViewById(R.id.score_txt);
 
         mNameInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
             // Fetch the score from the Intent
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
             Log.e(TAG, "erreur=" + score);
+            scoreText.setText(score);
+
         }
     }
 }
