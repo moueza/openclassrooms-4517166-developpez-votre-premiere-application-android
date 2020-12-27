@@ -1,6 +1,8 @@
 package mypack.controller;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import mypack.model.QuestionBank;
  * p2c5 2:14 nouv questionp2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
+ * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  */
 /**p2c5 3:15 tjs v7 pr retrocompatibilite*/
 /**p2c5 3:30 Builder*/
@@ -27,15 +30,15 @@ import mypack.model.QuestionBank;
 
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
+
     private TextView mQuestionText;
     private Button mAnswerButton1;
     private Button mAnswerButton2;
     private Button mAnswerButton3;
     private Button mAnswerButton4;
-
     private QuestionBank mQuestionBank;
     private Question mCurrentQuestion;
-
     private int mScore;
     private int mNumberOfQuestions;
 
@@ -205,10 +208,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();//https://developer.android.com/reference/android/app/Activity.html#finish() ancre
+                        //https://developer.android.com/reference/android/app/Activity.html#finish() ancre
+                        Intent intent = new Intent();
+                        intent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+                        setResult(RESULT_OK, intent);
+                        finish();
                     }
                 })
                 .create()
                 .show();
     }
+
 }

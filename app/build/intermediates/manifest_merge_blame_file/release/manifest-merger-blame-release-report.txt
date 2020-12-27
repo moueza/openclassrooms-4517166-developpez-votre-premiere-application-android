@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.homniserv.moueza.peter.topquiz"
+3    package="com.homniserv.moueza.peter.topquizTrial"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
@@ -26,9 +26,9 @@
 17-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:10:5-31
 18        android:theme="@style/AppTheme" >
 18-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:11:5-36
-19        <activity android:name="mypack.MainActivity" >
+19        <activity android:name="mypack.controller.MainActivity" >
 19-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:12:5-18:16
-19-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:12:15-43
+19-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:12:15-54
 20            <intent-filter>
 20-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:13:9-17:25
 21                <action android:name="android.intent.action.MAIN" />
@@ -40,9 +40,9 @@
 23-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:16:23-70
 24            </intent-filter>
 25        </activity>
-26        <activity android:name="mypack.GameActivity" >
+26        <activity android:name="mypack.controller.GameActivity" >
 26-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:20:5-22:16
-26-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:20:15-43
+26-->/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/src/main/AndroidManifest.xml:20:15-54
 27        </activity>
 28    </application>
 29
