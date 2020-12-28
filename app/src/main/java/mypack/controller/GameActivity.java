@@ -2,6 +2,7 @@ package mypack.controller;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -93,29 +94,29 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public QuestionBank generateQuestions() {
         Question question1 = new Question("Who is the creator of Android?",
-                Arrays.asList("Andy Rubin",
-                        "Steve Wozniak",
-                        "Jake Wharton",
-                        "Paul Smith"),
-                0);
+					  Arrays.asList("Andy Rubin",
+							"Steve Wozniak",
+							"Jake Wharton",
+							"Paul Smith"),
+					  0);
 
         Question question2 = new Question("When did the first man land on the moon?",
-                Arrays.asList("1958",
-                        "1962",
-                        "1967",
-                        "1969"),
-                3);
+					  Arrays.asList("1958",
+							"1962",
+							"1967",
+							"1969"),
+					  3);
 
         Question question3 = new Question("What is the house number of The Simpsons?",
-                Arrays.asList("42",
-                        "101",
-                        "666",
-                        "742"),
-                3);
+					  Arrays.asList("42",
+							"101",
+							"666",
+							"742"),
+					  3);
 
         return new QuestionBank(Arrays.asList(question1,
-                question2,
-                question3));
+					      question2,
+					      question3));
 
     }
 
@@ -131,7 +132,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mScore = 0;
         mNumberOfQuestions = 4;
 
-//wire widgets
+	//wire widgets
         mQuestionText = (TextView) findViewById(R.id.activity_game_question_text);
         mAnswerButton1 = (Button) findViewById(R.id.activity_game_answer1_btn);
         mAnswerButton2 = (Button) findViewById(R.id.activity_game_answer2_btn);
@@ -204,8 +205,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Well done!")
-                .setMessage("Your score is " + mScore)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	    .setMessage("Your score is " + mScore)
+	    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //https://developer.android.com/reference/android/app/Activity.html#finish() ancre
@@ -215,8 +216,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         finish();
                     }
                 })
-                .create()
-                .show();
+	    .create()
+	    .show();
     }
 
 }

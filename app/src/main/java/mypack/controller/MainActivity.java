@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mPlayButton;
     private User mUser;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Intent gameActivity = new Intent(MainActivity.this, GameActivity.class);
-                startActivity(gameActivity);
+                //startActivity(gameActivity);
+                startActivityForResult(gameActivity, GAME_ACTIVITY_REQUEST_CODE);
             }
         });
     }
@@ -81,8 +83,7 @@ public class MainActivity extends AppCompatActivity {
             // Fetch the score from the Intent
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
             Log.e(TAG, "erreur=" + score);
-            scoreText.setText(score);
-
+           // scoreText.setText(score); cause crash
         }
     }
 }
