@@ -1,6 +1,7 @@
 package mypack.controller;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,14 +17,16 @@ import mypack.R;
 import mypack.model.User;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
+    public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
     private static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     private static final String TAG = "MainActivity";
     private TextView mGreetingText;
-    private TextView    scoreText;
+    private TextView scoreText;
     private EditText mNameInput;
     private Button mPlayButton;
     private User mUser;
-
+    private SharedPreferences mPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mUser = new User();
+        mPreferences = getPreferences(MODE_PRIVATE);
 
         mGreetingText = (TextView) findViewById(R.id.activity_main_greeting_txt);
         mNameInput = (EditText) findViewById(R.id.activity_main_name_input);
@@ -67,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 String firstname = mNameInput.getText().toString();
                 mUser.setFirstName(mNameInput.getText().toString());
 
+                mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstName()).apply();
 
                 Intent gameActivity = new Intent(MainActivity.this, GameActivity.class);
                 //startActivity(gameActivity);
@@ -83,7 +88,10 @@ public class MainActivity extends AppCompatActivity {
             // Fetch the score from the Intent
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
             Log.e(TAG, "erreur=" + score);
-           // scoreText.setText(score); cause crash
+            // scoreText.setText(score); cause crash
+
+            mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
+
         }
     }
 }
