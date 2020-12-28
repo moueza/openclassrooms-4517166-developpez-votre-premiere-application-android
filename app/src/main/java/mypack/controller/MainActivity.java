@@ -1,6 +1,7 @@
 package mypack.controller;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,10 +16,12 @@ import mypack.R;
 import mypack.model.User;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int GAME_ACTIVITY_REQUEST_CODE = 42;
+    private static final String TAG = "MainActivity";
     private TextView mGreetingText;
+    private TextView    scoreText;
     private EditText mNameInput;
     private Button mPlayButton;
-
     private User mUser;
 
    public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
 
         mPlayButton.setEnabled(false);
+        scoreText = (TextView) findViewById(R.id.score_txt);
 
         mNameInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -70,5 +74,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(gameActivity, GAME_ACTIVITY_REQUEST_CODE);
             }
         });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (GAME_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
+            // Fetch the score from the Intent
+            int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
+            Log.e(TAG, "erreur=" + score);
+            scoreText.setText(score);
+
+        }
     }
 }
