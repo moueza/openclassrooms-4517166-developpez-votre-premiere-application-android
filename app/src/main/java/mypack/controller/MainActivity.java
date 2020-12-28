@@ -43,33 +43,45 @@ public class MainActivity extends AppCompatActivity {
 
         mGreetingText = (TextView) findViewById(R.id.activity_main_greeting_txt);
         mNameInput = (EditText) findViewById(R.id.activity_main_name_input);
+        if (null!=getPreferences(MODE_PRIVATE).getString(PREF_KEY_FIRSTNAME,null)){
+            mNameInput.setEnabled(false);
+        }else{
+            mNameInput.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    // This is where we'll check the user input
+                    mPlayButton.setEnabled(s.toString().length() != 0);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+        }
+
+        if (null!=getPreferences(MODE_PRIVATE).getString(PREF_KEY_SCORE,null)){
+           scoreText.setText(getPreferences(MODE_PRIVATE).getString(PREF_KEY_SCORE,null));
+        }else{
+            Log.e(TAG,"lbl444 No score");
+        }
+
+
         mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
 
         mPlayButton.setEnabled(false);
         scoreText = (TextView) findViewById(R.id.score_txt);
 
-        mNameInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // This is where we'll check the user input
-                mPlayButton.setEnabled(s.toString().length() != 0);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String firstname = mNameInput.getText().toString();
-                mUser.setFirstName(mNameInput.getText().toString());
+                mUser.setFirstName(firstname);
 
                 mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstName()).apply();
 
@@ -92,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
             mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
 
+        }else{
+            Log.e(TAG, "NULL1" );
         }
     }
 }
