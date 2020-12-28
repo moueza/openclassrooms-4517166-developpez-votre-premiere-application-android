@@ -43,8 +43,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int mScore;
     private int mNumberOfQuestions;
 
-    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
-
     public QuestionBank getQuestionBank() {
         return mQuestionBank;
     }
