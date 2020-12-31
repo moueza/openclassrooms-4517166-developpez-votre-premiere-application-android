@@ -3,10 +3,12 @@ package mypack.controller;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import mypack.model.QuestionBank;
 
 /**
  * p2c5 2:14 nouv questionp2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
+ * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
@@ -43,6 +46,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Question mCurrentQuestion;
     private int mScore;
     private int mNumberOfQuestions;
+
+    private boolean mEnableTouchEvents;
 
     public QuestionBank getQuestionBank() {
         return mQuestionBank;
@@ -132,7 +137,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         mScore = 0;
         mNumberOfQuestions = 4;
-
+        mEnableTouchEvents = true;
         //wire widgets
         mQuestionText = (TextView) findViewById(R.id.activity_game_question_text);
         mAnswerButton1 = (Button) findViewById(R.id.activity_game_answer1_btn);
@@ -192,14 +197,29 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+        mEnableTouchEvents = false;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mEnableTouchEvents = true;
+                // If this is the last question, ends the game.
+                // Else, display the next question.
+                if (--mNumberOfQuestions == 0) {
+                    // No question left, end the game
+                    endGame();
+                } else {
+                    mCurrentQuestion = mQuestionBank.getQuestion();
+                    displayQuestion(mCurrentQuestion);
+                }
+            }
+        }, 2000); // LENGTH_SHORT is usually 2 second long
 
-        if (--mNumberOfQuestions == 0) {
-            // No question left, end the game
-            endGame();
-        } else {
-            mCurrentQuestion = mQuestionBank.getQuestion();
-            displayQuestion(mCurrentQuestion);
-        }
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return mEnableTouchEvents && super.dispatchTouchEvent(ev);
     }
 
     private void endGame() {
