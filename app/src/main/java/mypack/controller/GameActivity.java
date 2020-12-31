@@ -3,6 +3,7 @@ package mypack.controller;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -192,14 +193,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // If this is the last question, ends the game.
+                // Else, display the next question.
+                if (--mNumberOfQuestions == 0) {
+                    // No question left, end the game
+                    endGame();
+                } else {
+                    mCurrentQuestion = mQuestionBank.getQuestion();
+                    displayQuestion(mCurrentQuestion);
+                }
+            }
+        }, 2000); // LENGTH_SHORT is usually 2 second long
 
-        if (--mNumberOfQuestions == 0) {
-            // No question left, end the game
-            endGame();
-        } else {
-            mCurrentQuestion = mQuestionBank.getQuestion();
-            displayQuestion(mCurrentQuestion);
-        }
+
     }
 
     private void endGame() {
