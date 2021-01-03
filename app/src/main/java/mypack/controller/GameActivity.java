@@ -27,6 +27,7 @@ import mypack.model.QuestionBank;
  * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
+ * p2c5 3:15 tjs v7 pr retrocompatibilitep2c5 3:30 Builder
  */
 /**p2c5 3:15 tjs v7 pr retrocompatibilite*/
 /**p2c5 3:30 Builder*/
@@ -130,6 +131,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        System.out.println("GameActivity :: onCreate()");
         setContentView(R.layout.activity_game);
 
 
@@ -170,6 +173,47 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         this.displayQuestion(mCurrentQuestion);
         //this.setQuestionMoi(this.generateQuestions().getQuestion());
         // this.displayQuestion(this.generateQuestions().getQuestion());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("GameActivity :: onStart()");
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("GameActivity :: onResume()");
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("GameActivity :: onPause()");
+
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("GameActivity :: onStop()");
+
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("GameActivity :: onRestart()");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("GameActivity :: onDestroy()");
     }
 
     /**5:01*/

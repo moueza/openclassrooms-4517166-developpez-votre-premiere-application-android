@@ -32,10 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-        Log.e("fromm", "lbl10");
         super.onCreate(savedInstanceState);
+        System.out.println("MainActivity :: onCreate()");
+        Log.e("fromm", "lbl10");
         Log.e("fromm", "log de Peter MOUEZA");
         setContentView(R.layout.activity_main);
 
@@ -90,6 +89,46 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("MainActivity :: onStart()");
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("MainActivity :: onResume()");
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("MainActivity :: onPause()");
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("MainActivity :: onRestart()");
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("MainActivity :: onStop()");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("MainActivity :: onDestroy()");
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -99,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
             Log.e(TAG, "erreur=" + score);
             // scoreText.setText(score); cause crash -> trial in greetUser()
-            mscoreTextMoi.setText(""+score);
+            mscoreTextMoi.setText("" + score);
 
 
             mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
@@ -130,6 +169,6 @@ public class MainActivity extends AppCompatActivity {
             mPlayButton.setEnabled(true);
 
             //mscoreTextMoi.setText(""+score);
-         }
+        }
     }
 }
