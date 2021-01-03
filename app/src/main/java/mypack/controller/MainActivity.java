@@ -33,13 +33,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Correction : affiche ou ?
         System.out.println("MainActivity :: onCreate()");
         Log.e("fromm", "lbl10");
         Log.e("fromm", "log de Peter MOUEZA");
         setContentView(R.layout.activity_main);
 
-        //Correction : affiche ou ?
-        System.out.println("MainActivity::onCreate()");
 
         mUser = new User();
         mPreferences = getPreferences(MODE_PRIVATE);
