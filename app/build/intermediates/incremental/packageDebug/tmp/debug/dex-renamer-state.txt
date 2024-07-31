@@ -1,4 +1,4 @@
-#Sun Jan 03 08:43:06 CET 2021
+#Wed Jul 31 05:39:56 CEST 2024
 base.0=/home/peter/POUB/openclassrooms-4517166-developpez-votre-premiere-application-android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
