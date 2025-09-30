@@ -5,3 +5,5 @@
 .APK https://github.com/moueza/openclassrooms-4517166-developpez-votre-premiere-application-android/blob/master/app/release/app-release.apk
 
 .debug :  https://github.com/moueza/openclassrooms-4517166-developpez-votre-premiere-application-android/blob/master/app/build/outputs/apk/debug/app-debug.apk
+
+. -> https://github.com/moueza/openclassrooms-8150246-developpez-votre-premiere-application-android 
